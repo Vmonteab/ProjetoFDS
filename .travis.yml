@@ -1,0 +1,28 @@
+language: python
+
+python:
+  - 3.10.8
+
+services:
+  - docker
+install:
+  - pip install -r requirements.txt
+
+virtualenv:
+  system_site_packages: true
+
+os:
+  - macos
+
+script:
+  - python manage.py test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: $HEROKU_APP_NAME
+  on:
+    branch: main
+
+# Path: .travis.yml
